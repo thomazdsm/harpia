@@ -77,10 +77,9 @@ class HorasTrabalhadasController extends BaseController
                 ->sortable(array('htr_id'));
 
             $paginacao = $tableData->appends($request->except('page'));
-
         }
 
-        $periodosLaboraisTest = PeriodoLaboral::all();
+        $periodosLaboraisTest = PeriodoLaboral::orderBy('pel_id', 'DESC')->get();
 
         $periodosLaborais = [];
 

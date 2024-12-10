@@ -197,17 +197,23 @@ class HoraTrabalhadaRepository extends BaseRepository
 
     public function paginate($sort = null, $search = null)
     {
-
         $result = $this->model->join('reh_colaboradores', function ($join) {
             $join->on('htr_col_id', '=', 'col_id');
         })->leftJoin('reh_colaboradores_funcoes', function ($join) {
             $join->on('col_id', '=', 'cfn_col_id');
+        })->join('gra_pessoas', function ($join) {
+            $join->on('col_pes_id', '=', 'pes_id');
         })->groupBy('col_id');
 
         if (!empty($search)) {
             foreach ($search as $value) {
                 if ($value['field'] == 'cfn_set_id') {
                     $result = $result->where('cfn_set_id', $value['term'])->where('cfn_data_fim', null);
+                    continue;
+                }
+
+                if ($value['field'] == 'pes_nome') {
+                    $result = $result->where('pes_nome', 'like', "%{$value['term']}%");
                     continue;
                 }
 
@@ -227,6 +233,4 @@ class HoraTrabalhadaRepository extends BaseRepository
 
         return $result->paginate(15);
     }
-
-
 }

@@ -28,35 +28,40 @@
         <div class="box-body">
             <div class="row">
                 <form method="GET" action="{{ route('rh.horastrabalhadas.index') }}">
-                    <div class="form-group col-md-3">
-                        {!! Form::select('htr_pel_id', $periodosLaborais, Request::input('htr_pel_id'), ['id' => 'htr_pel_id', 'class' => 'form-control', 'placeholder' => 'Selecione o período laboral']) !!}
+{{--                    TODO: Corrigir o layout dos dropdowns--}}
+                    <div class="form-group col-md-2">
+                        {!! Form::select('htr_pel_id', $periodosLaborais, Request::input('htr_pel_id'), ['id' => 'htr_pel_id', 'class' => 'form-control', 'placeholder' => 'Selecione o período laboral', 'required' => 'required']) !!}
                     </div>
 
                     <div class="form-group col-md-2">
                         {!! Form::select('cfn_set_id', $setores, Request::input('cfn_set_id'), ['class' => 'form-control', 'placeholder' => 'Selecione o setor']) !!}
                     </div>
 
+                    <div class="form-group col-md-3">
+                        {!! Form::text('pes_nome', Request::input('pes_nome'), ['class' => 'form-control', 'placeholder' => 'Nome do Colaborador']) !!}
+                    </div>
+
                     <div class="col-md-2">
                         <input type="submit" class="form-control btn-primary" value="Buscar">
                     </div>
 
+                    <div class="col-md-2">
+                        {!! ActionButton::grid([
+                            'type' => 'LINE',
+                            'buttons' => [
+                                    [
+                                        'classButton' => 'btn btn-success modal-update-polo',
+                                        'icon' => 'fa fa-plus',
+                                        'route' => 'academico.matricularalunocurso.edit',
+                                        'parameters' => 1,
+                                        'label' => ' Importar dados',
+                                        'method' => 'get',
+                                    ],
+                                ]
+                            ])
+                        !!}
+                    </div>
                 </form>
-                <div class="col-md-3">
-                    {!! ActionButton::grid([
-                        'type' => 'LINE',
-                        'buttons' => [
-                                [
-                                    'classButton' => 'btn btn-success modal-update-polo',
-                                    'icon' => 'fa fa-plus',
-                                    'route' => 'academico.matricularalunocurso.edit',
-                                    'parameters' => 1,
-                                    'label' => ' Importar dados',
-                                    'method' => 'get',
-                                ],
-                            ]
-                        ])
-                    !!}
-                </div>
 
                 <!-- Modal Mudança Polo/Grupo -->
                 <div class="modal fade modalUpdatePolo">
@@ -146,7 +151,8 @@
     <script src="{{asset('/js/plugins/bootstrap-datepicker.pt-BR.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("select").select2();
+            $("select").select2({
+            });
         });
     </script>
 
