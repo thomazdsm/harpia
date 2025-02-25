@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['prefix' => 'rh', 'middleware' => ['auth']], function () {
     Route::get('/', '\Modulos\RH\Http\Controllers\IndexController@getIndex')->name('rh.index.index');
 
@@ -98,6 +100,16 @@ Route::group(['prefix' => 'rh', 'middleware' => ['auth']], function () {
             Route::post('/delete', '\Modulos\RH\Http\Controllers\JustificativasController@postDelete')->name('rh.horastrabalhadas.justificativas.delete');
         });
 
+    });
+
+    Route::group(['prefix' => 'migracao'], function () {
+        Route::get('/', '\Modulos\RH\Http\Controllers\MigracaoController@index')->name('rh.migracao.index');
+        Route::get('/connection-status', '\Modulos\RH\Http\Controllers\MigracaoController@status')->name('rh.migracao.connection.status');
+    });
+
+    Route::group(['prefix' => 'catraca'], function () {
+        Route::get('/bilhetes', '\Modulos\RH\Http\Controllers\Catraca\BilhetesController@index')->name('rh.catraca.bilhetes');
+        Route::get('/detalhes', '\Modulos\RH\Http\Controllers\Catraca\BilhetesController@details')->name('rh.bilhetes.detalhes');
     });
 
     Route::group(['prefix' => 'horastrabalhadasdiarias'], function () {

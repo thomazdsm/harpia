@@ -84,6 +84,19 @@ return [
             'schema' => 'public',
         ],
 
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'host' => env('CTR_DB_HOST', 'localhost'),
+            'port' => env('CTR_DB_PORT', '1433'),
+            'database' => env('CTR_DB_DATABASE', 'forge'),
+            'username' => env('CTR_DB_USERNAME', 'forge'),
+            'password' => env('CTR_DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+//            'encrypt' => env('CTR_DB_ENCRYPT', 'yes'),
+            'trust_server_certificate' => env('CTR_DB_TRUST_SERVER_CERTIFICATE', 'true'),
+        ]
     ],
 
     /*
