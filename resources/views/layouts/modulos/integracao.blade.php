@@ -27,10 +27,8 @@
 
 <div class="wrapper">
 
-    <header class="main-header">
-        @include('layouts.includes.logo')
-
-        @include('layouts.includes.header_rightmenu')
+    <header>
+        @include('layouts.includes.navbar.navbar')
     </header>
 
     <!-- Left side column. contains the main navigation menu-->

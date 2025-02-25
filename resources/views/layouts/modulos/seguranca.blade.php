@@ -7,10 +7,7 @@
 
     <title>Módulo Admin - @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/plugins/toastr.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
-    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,14 +24,10 @@
 
 <div class="wrapper">
 
-    <header class="main-header">
-        @include('layouts.includes.logo')
-
-        @include('layouts.includes.header_rightmenu')
-    </header>
+    @include('layouts.includes.navbar.navbar')
 
     <!-- Left side column. contains the main navigation menu-->
-    @include('layouts.includes.left')
+    @include('layouts.includes.sidebar.left')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -60,12 +53,7 @@
 </div><!-- ./wrapper -->
 
 <!-- JQUERY-->
-<script src="{{ asset('/js/jquery-2.2.3.min.js')}}"></script>
-<script src="{{ asset('/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('/js/app.min.js')}}"></script>
-<script src="{{ asset('/js/plugins/sweetalert.min.js')}}"></script>
-<script src="{{ asset('/js/plugins/toastr.min.js')}}"></script>
-<script src="{{ asset('/js/harpia.js')}}"></script>
+<script src="{{ asset('/js/app.js') }}"></script>
 
 {!! Flash::render() !!}
 

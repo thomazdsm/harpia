@@ -25,46 +25,8 @@
 
     <div class="wrapper">
 
-        <header class="main-header">
-            <nav class="navbar navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a href="{{url('/')}}" style="padding-top:2px;background-color:#E9F1F5" class="navbar-brand">
-                            <img src="{{url('/')}}/img/logo.png" style="height:47px" />
-                        </a>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </div>
-                    <nav class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ route('seguranca.profile.profile-picture', \Illuminate\Support\Facades\Auth::user()->usr_profile_picture_id ?? 0) }}" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{ Auth::user()->pessoa->pes_nome }}</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="user-header">
-                                        <img src="{{ route('seguranca.profile.profile-picture', \Illuminate\Support\Facades\Auth::user()->usr_profile_picture_id ?? 0) }}" alt="User Image" class="img-circle">
-                                        <p>{{ Auth::user()->pessoa->pes_nome }}</p>
-                                    </li>
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="{{url('/')}}/seguranca/profile" class="btn btn-default btn-flat">
-                                                <i class="fa fa-edit"></i> Perfil
-                                            </a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="{{url('/')}}/logout" class="btn btn-default btn-flat">
-                                                <i class="fa fa-sign-out"></i> Sair
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </ul>
-                    </nav>
-                </div>
-            </nav>
+        <header>
+            @include('layouts.includes.navbar.navbar')
         </header>
 
         <div class="content-wrapper">
