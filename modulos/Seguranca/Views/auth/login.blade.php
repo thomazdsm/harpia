@@ -1,55 +1,73 @@
 @extends('layouts.site')
 
 @section('content')
-    <div class="login-box" style="padding-top:10vh">
-        <div class="box box-widget widget-user" style="margin-bottom:5px">
-            <div class="widget-user-header text-center" style="background-color:#E9F1F5;border-bottom:2px solid #0083CE">
-                <img src="{{url('/')}}/img/logo.png" style="height:70px" />
-                <h4 class="text-center" style="margin-top:2px">Sistema de Gestão <b>Educacional</b></h4>
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center" style="background-color: #ECF0F5ff">
+                <a href="{{url('/')}}" class="h1" style="text-decoration: none;">
+                    <img src="{{ asset('img/logo_new.png') }}" alt="Harpia" style="max-width: 60%; height: auto;">
+                    <h6 class="mt-1">Sistema de Gestão <b>Educacional</b></h6>
+                </a>
             </div>
-            <div class="box-content">
-                <div class="login-box-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Whoops! </strong>Usuário e/ou senha incorreto(s).
-                        </div>
-                    @endif
-                    <p class="login-box-msg">Preencha os dados abaixo para acessar</p>
-                    <form action="{{url('/login')}}" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group has-feedback @if ($errors->has('usr_usuario')) has-error @endif">
-                            {!! Form::text('usr_usuario', old('usr_usuario'), array('placeholder' => 'Usuario', 'class'=>'form-control')) !!}
-                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                            @if ($errors->has('usr_usuario')) <p class="help-block">{{ $errors->first('usr_usuario') }}</p> @endif
-                        </div>
-                        <div class="form-group has-feedback @if ($errors->has('usr_senha')) has-error @endif">
-                            {!! Form::password('usr_senha', array('placeholder' => 'Senha', 'class'=>'form-control')) !!}
-                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                            @if ($errors->has('usr_senha')) <p class="help-block">{{ $errors->first('usr_senha') }}</p> @endif
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-8">
-                                <div class="checkbox icheck">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Lembrar-me
-                                    </label>
-                                </div>
+            <div class="card-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops! </strong>Usuário e/ou senha incorreto(s).
+                    </div>
+                @endif
+                <p class="login-box-msg" style="font-size: 14px">
+                    Preencha os dados abaixo para acessar
+                </p>
+                <form action="{{url('/login')}}" method="post">
+                    @csrf
+                    <div class="input-group mb-3">
+                        {!! Form::text('usr_usuario', old('usr_usuario'), [
+                            'placeholder' => 'Usuario',
+                            'class' => 'form-control ' . ($errors->has('usr_usuario') ? 'is-invalid' : '')
+                        ]) !!}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
                             </div>
-                            <div class="col-xs-4">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat mt-lg">Acessar</button>
-                            </div><!-- /.col -->
                         </div>
-                    </form>
-                </div>
-                <div class="box-footer" style="padding-top:5px">
-                    <a class="text-right col-md-12" href="{{url('/forget-password')}}">Esqueceu sua senha?</a>
-                </div>
+                        <span id="usr_usuario-error" class="error invalid-feedback">{{ $errors->first('usr_usuario') }}</span>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        {!! Form::password('usr_senha', [
+                            'placeholder' => 'Senha',
+                            'class' => 'form-control ' . ($errors->has('usr_senha') ? 'is-invalid' : '')
+                        ]) !!}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        <span id="usr_senha-error" class="error invalid-feedback">{{ $errors->first('usr_senha') }}</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">
+                                    Lembrar-me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer text-right" style="background-color: white; border-top: 1px solid #f5f5f5;">
+                <p class="mb-1">
+                    <a href="{{url('/forget-password')}}">Esqueceu sua senha?</a>
+                </p>
             </div>
         </div>
-        <footer class="main-footer" style="margin-left:0px;padding:5px;text-align:center;">
-            <strong style="font-size:12px">Copyright © 2016-{{ date('Y') }} <a href="http://www.uemanet.uema.br">UemaNet</a>.</strong> All rights
-            reserved.
-        </footer>
     </div>
-@stop
+@endsection
