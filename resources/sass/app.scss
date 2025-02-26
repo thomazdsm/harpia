@@ -2,7 +2,7 @@
 @import 'variables';
 
 // Bootstrap
-//@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
 // Tema Admin-LTE
 @import 'theme/admin-lte';
@@ -18,4 +18,5 @@
 @import "~icheck-bootstrap/icheck-bootstrap.min.css";
 
 // Aqui você pode adicionar outros imports conforme necessário
-@import "custom/sidebar.scss";
+@import "custom/sidebar";
+@import "custom/navbar";

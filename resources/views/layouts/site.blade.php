@@ -15,11 +15,7 @@
 <body class="hold-transition login-page">
     @yield('content')
 
-    <footer class="footer fixed-bottom text-center pb-2">
-        <span style="font-size:13px">
-            <b>Copyright © 2016-{{ date('Y') }} <a href="http://www.uemanet.uema.br">UemaNet</a>.</b> All rights reserved.
-        </span>
-    </footer>
+    @include('layouts.includes.footer.clean')
 
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')

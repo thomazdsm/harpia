@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary" style="padding:0 !important;">
+<nav class="navbar navbar-harpia">
     <div class="container-fluid">
         @include('layouts.includes.navbar.logo')
 

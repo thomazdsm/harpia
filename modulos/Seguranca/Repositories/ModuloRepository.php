@@ -2,8 +2,8 @@
 
 namespace Modulos\Seguranca\Repositories;
 
-use DB;
 use Cache;
+use Illuminate\Support\Facades\DB;
 use Modulos\Seguranca\Models\Modulo;
 use Modulos\Core\Repository\BaseRepository;
 
