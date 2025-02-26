@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+<ul class="sidebar-menu" data-widget="tree">
     @if($root->hasChildren())
         @foreach($root->getChilds() as $child)
             @include('Seguranca::mastermenu.node', ['node' => $child])

@@ -15,7 +15,7 @@
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
         <header>
-            @include('layouts.includes.navbar.navbar')
+            @include('layouts.includes.navbar.main', [ 'noaside' => true ])
         </header>
 
         <div class="content-wrapper">

@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+@extends('layouts.modulos.base')
 
-    <title>Módulo Admin - @yield('title')</title>
-
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    @section('stylesheets')
-    @show
-</head>
-
-<body class="hold-transition skin-blue-light sidebar-mini">
-
-<div class="wrapper">
-
-    @include('layouts.includes.navbar.navbar')
-
-    <!-- Left side column. contains the main navigation menu-->
-    @include('layouts.includes.sidebar.left')
-
+@section('modulo-content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
@@ -46,19 +18,4 @@
             @yield('content')
         </section>
     </div><!-- /.content-wrapper -->
-
-    <!-- Footer bar. -->
-    @include('layouts.includes.footer')
-
-</div><!-- ./wrapper -->
-
-<!-- JQUERY-->
-<script src="{{ asset('/js/app.js') }}"></script>
-
-{!! Flash::render() !!}
-
-@section('scripts')
-
-@show
-</body>
-</html>
+@endsection

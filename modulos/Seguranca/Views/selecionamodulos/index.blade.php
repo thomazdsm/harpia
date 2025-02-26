@@ -8,7 +8,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="callout callout-info">
+                    <div class="callout callout-info w-100">
                         <h3 class="timeline-header">Bem-Vindo ao <a href="{{ route('index') }}" class="link-primary" style="text-decoration: none;">Harpia</a></h3>
                         <p>Escolha um dos módulos para começar!</p>
                     </div>

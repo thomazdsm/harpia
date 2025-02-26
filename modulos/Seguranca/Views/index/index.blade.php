@@ -9,5 +9,5 @@
 @stop
 
 @section('content')
-
+    Content...
 @stop
