@@ -52733,11 +52733,19 @@ a.text-muted:hover {
 }
 
 .bg-harpia-primary {
-  background-color: #3c8dbc;
+  background-color: rgb(60, 141, 188);
 }
 
 .bg-harpia-secondary {
-  background-color: #e7e7ff;
+  background-color: rgb(236, 240, 245);
+}
+
+.text-harpia-primary {
+  color: rgb(60, 141, 188);
+}
+
+.text-harpia-secondary {
+  color: rgb(236, 240, 245);
 }
 
 main {

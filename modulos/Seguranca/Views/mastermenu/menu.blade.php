@@ -1,6 +1,9 @@
 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="info w-100 text-center">
-        <span class="d-block text-primary" style="font-weight: bold; text-transform: uppercase;">
+    <div class="image">
+        <img src="{{ asset('img/modules.svg') }}" class="" alt="User Image">
+    </div>
+    <div class="info">
+        <span class="d-block text-harpia-primary" style="font-weight: bold; text-transform: uppercase;">
             {{ $root->getName() }}
         </span>
     </div>
