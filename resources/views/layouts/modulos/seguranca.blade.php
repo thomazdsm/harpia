@@ -4,13 +4,18 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>
-                @yield('title')
-                <small>@yield('subtitle')</small>
-            </h1>
-            <div class="actionbutton">
-                @yield('actionButton')
-            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <span class="h2 m-0">@yield('title')</span> <span>@yield('subtitle')</span>
+                    </div><!-- /.col -->
+                    <div class="col-sm-2">
+                        <ol class="float-sm-right">
+                            @yield('actionButton')
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </section>
 
         <!-- Main content -->

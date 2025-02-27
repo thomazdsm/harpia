@@ -15,3 +15,17 @@ require('./Chart.js'); // TODO: verificar caminho
 require('./cpfcnpj.min.js'); // TODO: verificar caminho
 require('fullcalendar');
 require('./harpia.js'); // TODO: verificar caminho
+
+$(document).ready(function() {
+
+    $("select").select2();
+    // $(".select2").select2();
+
+    // Inicializa todos os dropdowns bootstrap
+    $('.dropdown-toggle').dropdown();
+
+    // Inicializa os dropdowns de ação na tabela
+    $(document).on('click', '.btn-group .dropdown-toggle', function() {
+        $(this).siblings('.dropdown-menu').toggle();
+    });
+});

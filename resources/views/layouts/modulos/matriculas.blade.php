@@ -1,49 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+@extends('layouts.modulos.base')
 
-    <title>Módulo Admin - @yield('title')</title>
-
-    <link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/plugins/toastr.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
-    
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    @section('stylesheets')
-    @show
-</head>
-
-<body class="hold-transition skin-blue-light sidebar-mini">
-
-<div class="wrapper">
-
-    <header>
-        @include('layouts.includes.navbar.navbar')
-    </header>
-
-    <!-- Left side column. contains the main navigation menu-->
-    @include('layouts.includes.left')
-
+@section('modulo-content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                @yield('title')
-                <small>@yield('subtitle')</small>
-            </h1>
-            <div class="actionbutton">
-                @yield('actionButton')
-            </div>
+        <section class="content-header pb-0">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="h2 m-0">@yield('title')</span> <span>@yield('subtitle')</span>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="float-sm-right">
+                            @yield('actionButton')
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </section>
 
         <!-- Main content -->
@@ -51,24 +23,4 @@
             @yield('content')
         </section>
     </div><!-- /.content-wrapper -->
-
-    <!-- Footer bar. -->
-    @include('layouts.includes.footer')
-
-</div><!-- ./wrapper -->
-
-<!-- JQUERY-->
-<script src="{{ asset('/js/jquery-2.2.3.min.js')}}"></script>
-<script src="{{ asset('/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('/js/app.min.js')}}"></script>
-<script src="{{ asset('/js/plugins/sweetalert.min.js')}}"></script>
-<script src="{{ asset('/js/plugins/toastr.min.js')}}"></script>
-<script src="{{ asset('/js/harpia.js')}}"></script>
-
-{!! Flash::render() !!}
-
-@section('scripts')
-
-@show
-</body>
-</html>
+@endsection

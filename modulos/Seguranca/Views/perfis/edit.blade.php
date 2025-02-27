@@ -9,11 +9,11 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de edição de perfil</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h5 class="box-title">Formulário de edição de perfil</h5>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::model($perfil,["route" => ['seguranca.perfis.edit', $perfil->prf_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
                 @include('Seguranca::perfis.includes.formulario_edit')
             {!! Form::close() !!}

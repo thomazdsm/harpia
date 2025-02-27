@@ -58,8 +58,8 @@ class PerfisController extends BaseController
                     ],
                     'buttons' => [
                         [
-                            'classButton' => 'text-blue',
-                            'icon' => 'fa fa-check-square-o',
+                            'classButton' => '',
+                            'icon' => 'fa-regular fa-square-check',
                             'route' => 'seguranca.perfis.atribuirpermissoes',
                             'parameters' => ['id' => $id],
                             'label' => 'Permissões',
@@ -74,7 +74,7 @@ class PerfisController extends BaseController
                             'method' => 'get'
                         ],
                         [
-                            'classButton' => 'btn-delete text-red',
+                            'classButton' => 'text-danger',
                             'icon' => 'fa fa-trash',
                             'route' =>  'seguranca.perfis.delete',
                             'id' => $id,

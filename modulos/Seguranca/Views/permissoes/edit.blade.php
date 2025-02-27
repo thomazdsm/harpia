@@ -9,11 +9,11 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Editar Permissão</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Editar Permissão</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::model($permissao, ["route" => ['seguranca.permissoes.edit', $permissao->prm_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
                 @include('Seguranca::permissoes.includes.formulario')
             {!! Form::close() !!}

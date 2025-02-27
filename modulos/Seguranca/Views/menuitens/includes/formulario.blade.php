@@ -1,8 +1,3 @@
-@section('stylesheets')
-    @parent
-    <link rel="stylesheet" href="{{asset('/css/plugins/select2.css')}}">
-@stop
-
 <div class="row">
     <div class="col-md-2">
         <div class="form-group @if($errors->has('mit_mod_id'))has-error @endif">
@@ -68,14 +63,8 @@
 </div>
 
 @section('scripts')
-    @parent
-
-    <script src="{{asset('/js/plugins/select2.js')}}" type="text/javascript"></script>
-
     <script type="text/javascript">
         $(function() {
-            $('select').select2();
-
             $('#mit_mod_id').change(function() {
 
                 var modulo = $(this).val();
@@ -95,4 +84,4 @@
             });
         });
     </script>
-@stop
+@endsection

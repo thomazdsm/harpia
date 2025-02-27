@@ -32,12 +32,76 @@ class ActionButton
     {
         switch ($component['type']) {
             case 'SELECT':
-                return $this->renderButtonGridSelect($component['config'], $component['buttons']);
+                return $this->renderButtonGridSelectFix($component);
             case 'BUTTONS':
                 return $this->renderButtonGrid($component['config'], $component['buttons']);
             case 'LINE':
                 return $this->renderButtonGridLine($component['buttons']);
         }
+    }
+
+    // TODO: Se validado excluir a outra function renderButtonGridSelect()
+    private function renderButtonGridSelectFix($config)
+    {
+        $html = '<div class="btn-group">';
+
+        // Botão principal
+        $label = $config['config']['label'] ?? 'Selecione';
+        $btnClass = $config['config']['classButton'] ?? 'btn-default';
+        $html .= '<button type="button" class="btn ' . $btnClass . '">' . $label . '</button>';
+
+        // Botão dropdown com ícone
+        $html .= '<button type="button" class="btn ' . $btnClass . ' dropdown-toggle dropdown-icon" data-toggle="dropdown">';
+        $html .= '<span class="sr-only">Toggle Dropdown</span>';
+        $html .= '</button>';
+
+        // Menu dropdown
+        $html .= '<div class="dropdown-menu" role="menu">';
+
+        // Itens do dropdown
+        foreach ($config['buttons'] as $button) {
+            // Verifica se é um botão normal ou um form (para delete)
+            if (isset($button['method']) && strtolower($button['method']) == 'post') {
+                // Botão de formulário (ex: botão de exclusão)
+                $route = route($button['route']);
+                $id = $button['id'];
+                $icon = $button['icon'] ?? '';
+                $btnLabel = $button['label'] ?? '';
+                $btnClass = $button['classButton'] ?? '';
+
+                $html .= '<form action="' . $route . '" method="POST">';
+                $html .= '<input type="hidden" name="id" value="' . $id . '">';
+                $html .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+                $html .= '<input type="hidden" name="_method" value="POST">';
+                $html .= '<button type="submit" class="dropdown-item ' . $btnClass . '">';
+
+                if (!empty($icon)) {
+                    $html .= '<i class="' . $icon . '"></i> ';
+                }
+
+                $html .= $btnLabel . '</button></form>';
+            } else {
+                // Link normal
+                $parameters = $button['parameters'] ?? [];
+                $route = route($button['route'], $parameters);
+                $icon = $button['icon'] ?? '';
+                $btnLabel = $button['label'] ?? '';
+                $btnClass = $button['classButton'] ?? '';
+
+                $html .= '<a class="dropdown-item ' . $btnClass . '" href="' . $route . '">';
+
+                if (!empty($icon)) {
+                    $html .= '<i class="' . $icon . '"></i> ';
+                }
+
+                $html .= $btnLabel . '</a>';
+            }
+        }
+
+        $html .= '</div>'; // Fecha dropdown-menu
+        $html .= '</div>'; // Fecha btn-group
+
+        return $html;
     }
 
     private function renderButtonGridSelect($config, $buttons)

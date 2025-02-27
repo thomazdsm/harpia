@@ -13,8 +13,8 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
             <div id="jstree">
                 <ul>
                     @if(count($permissoes))
@@ -24,13 +24,13 @@
                                     <ul>
                                         @foreach($permissao['permissoes'] as $perm)
                                             <li
-                                                @if($perm['habilitado'])
-                                                    data-jstree='{"selected":"true", "type":"sub"}'
-                                                @else
-                                                    data-jstree='{"type":"sub"}'
-                                                @endif
-                                                id="prm_{{$perm['prm_id']}}">
-                                                    {{ $perm['prm_nome'] }}
+                                                    @if($perm['habilitado'])
+                                                        data-jstree='{"selected":"true", "type":"sub"}'
+                                                    @else
+                                                        data-jstree='{"type":"sub"}'
+                                                    @endif
+                                                    id="prm_{{$perm['prm_id']}}">
+                                                {{ $perm['prm_nome'] }}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -40,15 +40,16 @@
                     @endif
                 </ul>
             </div>
-
+        </div>
+        <div class="card-footer text-center">
             {!! Form::open(["url" => "/seguranca/perfis/atribuirpermissoes/". $perfil->prf_id, "method" => "POST", "role" => "form"]) !!}
-                {!! Form::hidden('permissao','' , ['id'=>'permissao']) !!}
-                {!! Form::hidden('prf_id', $perfil->prf_id) !!}
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        {!! Form::submit('Atribuir permissões ao perfil', ['class' => 'btn btn-primary pull-right', 'id' => 'btn-enviar']) !!}
-                    </div>
+            {!! Form::hidden('permissao','' , ['id'=>'permissao']) !!}
+            {!! Form::hidden('prf_id', $perfil->prf_id) !!}
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {!! Form::submit('Atribuir permissões ao perfil', ['class' => 'btn btn-primary pull-right', 'id' => 'btn-enviar']) !!}
                 </div>
+            </div>
             {!! Form::close() !!}
         </div>
     </div>

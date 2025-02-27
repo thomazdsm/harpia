@@ -9,26 +9,26 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header">
-            <h3 class="box-title">Atribuir Novo Perfil</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Atribuir Novo Perfil</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             <div class="row">
-                {!! Form::open(array('route' => ['seguranca.usuarios.atribuirperfil', $usuario->usr_id], 'method' => 'POST', 'id' => 'formAtribuirPerfil')) !!}
-                    <div class="form-group col-md-3">
+                {!! Form::open(array('route' => ['seguranca.usuarios.atribuirperfil', $usuario->usr_id], 'method' => 'POST', 'id' => 'formAtribuirPerfil', 'class' => 'w-100 d-flex')) !!}
+                    <div class="form-group col-md-5">
                         @if(!empty($modulos))
                             {!! Form::select('mod_id', $modulos, old('mod_id'), ['class' => 'form-control', 'id' => 'mod_id', 'placeholder' => 'Selecione o módulo']) !!}
                         @else
                             {!! Form::select('mod_id', [], null, ['class' => 'form-control', 'id' => 'mod_id', 'placeholder' => 'Sem módulos']) !!}
                         @endif
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-5">
                         <div class="controls">
                             {!! Form::select('prf_id', [], null, ['class' => 'form-control','id' => 'prf_id']) !!}
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group text-center col-md-2">
                         {!! Form::submit('Atribuir', ['class' => 'btn btn-primary', 'id' => 'btnAtribuir']) !!}
                     </div>
                 {!! Form::close() !!}
@@ -56,7 +56,7 @@
                                             'type' => 'LINE',
                                             'buttons' => [
                                                 [
-                                                    'classButton' => 'btn btn-danger btn-delete',
+                                                    'classButton' => 'btn btn-danger ',
                                                     'icon' => 'fa fa-trash',
                                                     'route' => 'seguranca.usuarios.deletarperfil',
                                                     'parameters' => ['id' => $usuario->usr_id],

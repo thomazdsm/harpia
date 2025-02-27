@@ -9,11 +9,11 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de edição de usuário</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Formulário de edição de usuário</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::model($usuario,['route' => ['seguranca.usuarios.edit', $usuario->usr_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
             <h4 class="box-title">
                 Dados de Usuário
