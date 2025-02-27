@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-harpia">
+<nav class="main-header navbar navbar-expand navbar-harpia">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         @if($noaside)
@@ -8,11 +8,6 @@
         @else
             <li class="nav-item">
                 <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item">
-                <span class="nav-link text-white" style="font-weight: bold">
-                    {{ Cache::get('MENU_' . Auth::user()->usr_id)[explode('.', Request::route()->getName())[0]]->getRoot()->getName() }}
-                </span>
             </li>
         @endif
     </ul>

@@ -11,9 +11,7 @@
    <!-- Sidebar -->
    <div class="sidebar">
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-         {!! MasterMenu::render() !!}
-      </nav>
+      {!! MasterMenu::render() !!}
       <!-- /.sidebar-menu -->
    </div>
    <!-- /.sidebar -->

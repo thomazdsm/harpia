@@ -2,12 +2,11 @@
 
 @section('title')
     Módulo de Segurança
-@stop
+@endsection
 
 @section('subtitle')
     Módulo de Segurança
-@stop
+@endsection
 
 @section('content')
-    Content...
-@stop
+@endsection
