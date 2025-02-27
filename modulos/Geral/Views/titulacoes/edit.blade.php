@@ -1,4 +1,4 @@
-@extends('layouts.modulos.academico')
+@extends('layouts.modulos.default')
 
 @section('title')
     Titulações
@@ -9,11 +9,11 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de edição de titulações</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Formulário de edição de titulações</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::model($titulacao, ["route" => ['geral.titulacoes.edit',$titulacao->tit_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
                 @include('Geral::titulacoes.includes.formulario')
             {!! Form::close() !!}

@@ -2,18 +2,13 @@
 <div class="row">
     <div class="col-md-12">
         <!-- About Me Box -->
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Documentos</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">Documentos</h3>
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="card-body">
                 @if(!$pessoa->documentos->isEmpty())
                     <table class="table table-bordered">
                         <tr>
@@ -78,21 +73,23 @@
                 @else
                     <p>Sem documentos para apresentar</p>
                 @endif
+            </div>
             <!-- /.box-body -->
-            {!! ActionButton::grid([
-                'type' => 'LINE',
-                'buttons' => [
-                  [
-                    'classButton' => 'btn btn-primary',
-                    'icon' => 'fa fa-plus-square',
-                    'route' => 'geral.pessoas.documentos.create',
-                    'parameters' => ['id' => $pessoa->pes_id],
-                    'label' => ' Novo Documento',
-                    'method' => 'get'
-                  ],
-                ]
-            ]) !!}
-          </div>
+            <div class="card-footer">
+                {!! ActionButton::grid([
+                    'type' => 'LINE',
+                    'buttons' => [
+                      [
+                        'classButton' => 'btn btn-primary',
+                        'icon' => 'fa fa-plus-square',
+                        'route' => 'geral.pessoas.documentos.create',
+                        'parameters' => ['id' => $pessoa->pes_id],
+                        'label' => ' Novo Documento',
+                        'method' => 'get'
+                      ],
+                    ]
+                ]) !!}
+            </div>
         </div>
         <!-- /.box -->
     </div>

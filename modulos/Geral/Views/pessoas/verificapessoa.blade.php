@@ -1,4 +1,4 @@
-@extends('layouts.modulos.seguranca')
+@extends('layouts.modulos.default')
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">

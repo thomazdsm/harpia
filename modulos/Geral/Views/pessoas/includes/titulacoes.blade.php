@@ -2,18 +2,13 @@
 <div class="row">
     <div class="col-md-12">
         <!-- About Me Box -->
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Titulações</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">Titulações</h3>
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="card-body">
                 @if(!$pessoa->titulacoes_informacoes->isEmpty())
                     <table class="table table-bordered">
                         <tr>
@@ -63,7 +58,7 @@
                 @endif
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
+            <div class="card-footer">
                 {!! ActionButton::grid([
                     'type' => 'LINE',
                     'buttons' => [
