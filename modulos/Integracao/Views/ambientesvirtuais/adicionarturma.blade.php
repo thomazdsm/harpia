@@ -1,4 +1,4 @@
-@extends('layouts.modulos.integracao')
+@extends('layouts.modulos.default')
 
 @section('title')
     Turmas do Ambiente Virtual
@@ -13,82 +13,80 @@
 @stop
 
 @section('content')
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Vincular Turmas ao Ambiente Virtual</h3>
-    </div>
-
-
-<div class="box-body">
-    <div class="row">
-      {!! Form::open(array('route' => ['integracao.ambientesvirtuais.adicionarturma', $ambiente->amb_id], 'method' => 'POST', 'id' => 'formAtribuirPerfil')) !!}
-
-          <div class="form-group col-md-3">
-                  {!! Form::select('crs_id', $cursos, old('crs_id'), ['class' => 'form-control', 'id' => 'crs_id', 'placeholder' => 'Selecione o curso']) !!}
-                  @if ($errors->has('crs_id')) <p class="help-block">{{ $errors->first('crs_id') }}</p> @endif
-          </div>
-          <div class="form-group col-md-3">
-                  {!! Form::select('ofc_id', [], old('ofc_id'), ['class' => 'form-control', 'id' => 'ofc_id', 'placeholder' => 'Selecione a oferta']) !!}
-                  @if ($errors->has('ofc_id')) <p class="help-block">{{ $errors->first('ofc_id') }}</p> @endif
-          </div>
-          <div class="form-group col-md-3">
-                  {!! Form::select('atr_trm_id', [], old('atr_trm_id'), ['class' => 'form-control', 'id' => 'atr_trm_id', 'placeholder' => 'Selecione a turma']) !!}
-                  @if ($errors->has('atr_trm_id')) <p class="help-block">{{ $errors->first('atr_trm_id') }}</p> @endif
-          </div>
-
-          <div class="form-group col-md-3">
-              {!! Form::submit('Vincular', ['class' => 'btn btn-primary', 'id' => 'btnAtribuir']) !!}
-          </div>
-      {!! Form::close() !!}
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-        @if(count($ambiente->turmas))
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <th style="width: 10px">#</th>
-                    <th style="width: 10px">Curso</th>
-                    <th style="width: 20px">Oferta de Curso</th>
-                    <th style="width: 20px">Turma</th>
-                    <th style="width: 20px"></th>
-                </thead>
-                <tbody>
-                    @foreach($ambiente->ambienteturma as $ambienteturma)
-                        <tr>
-                            <td>{{$ambienteturma->turma->trm_id}}</td>
-                            <td>{{$ambienteturma->turma->ofertacurso->curso->crs_nome}}</td>
-                            <td>{{$ambienteturma->turma->ofertacurso->ofc_ano}}</td>
-                            <td>{{$ambienteturma->turma->trm_nome}}</td>
-                            <td>
-                                {!! ActionButton::grid([
-                                    'type' => 'LINE',
-                                    'buttons' => [
-                                        [
-                                            'classButton' => 'btn btn-danger btn-delete',
-                                            'icon' => 'fa fa-trash',
-                                            'route' => 'integracao.ambientesvirtuais.deletarturma',
-                                            'id' => $ambienteturma->atr_id,
-                                            'label' => '',
-                                            'method' => 'post'
-                                        ]
-                                    ]
-                                ]) !!}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>Sem turmas vinculadas ao ambiente virtual</p>
-        @endif
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Vincular Turmas ao Ambiente Virtual</h3>
         </div>
+        <div class="card-body">
+            <div class="row">
+              {!! Form::open(array('route' => ['integracao.ambientesvirtuais.adicionarturma', $ambiente->amb_id], 'method' => 'POST', 'id' => 'formAtribuirPerfil', 'class' => 'd-flex w-100')) !!}
+
+                  <div class="form-group col-md-3">
+                          {!! Form::select('crs_id', $cursos, old('crs_id'), ['class' => 'form-control', 'id' => 'crs_id', 'placeholder' => 'Selecione o curso']) !!}
+                          @if ($errors->has('crs_id')) <p class="help-block">{{ $errors->first('crs_id') }}</p> @endif
+                  </div>
+                  <div class="form-group col-md-3">
+                          {!! Form::select('ofc_id', [], old('ofc_id'), ['class' => 'form-control', 'id' => 'ofc_id', 'placeholder' => 'Selecione a oferta']) !!}
+                          @if ($errors->has('ofc_id')) <p class="help-block">{{ $errors->first('ofc_id') }}</p> @endif
+                  </div>
+                  <div class="form-group col-md-3">
+                          {!! Form::select('atr_trm_id', [], old('atr_trm_id'), ['class' => 'form-control', 'id' => 'atr_trm_id', 'placeholder' => 'Selecione a turma']) !!}
+                          @if ($errors->has('atr_trm_id')) <p class="help-block">{{ $errors->first('atr_trm_id') }}</p> @endif
+                  </div>
+
+                  <div class="form-group col-md-3">
+                      {!! Form::submit('Vincular', ['class' => 'btn btn-primary', 'id' => 'btnAtribuir']) !!}
+                  </div>
+              {!! Form::close() !!}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                @if(count($ambiente->turmas))
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <th style="width: 10px">#</th>
+                            <th style="width: 10px">Curso</th>
+                            <th style="width: 20px">Oferta de Curso</th>
+                            <th style="width: 20px">Turma</th>
+                            <th style="width: 20px"></th>
+                        </thead>
+                        <tbody>
+                            @foreach($ambiente->ambienteturma as $ambienteturma)
+                                <tr>
+                                    <td>{{$ambienteturma->turma->trm_id}}</td>
+                                    <td>{{$ambienteturma->turma->ofertacurso->curso->crs_nome}}</td>
+                                    <td>{{$ambienteturma->turma->ofertacurso->ofc_ano}}</td>
+                                    <td>{{$ambienteturma->turma->trm_nome}}</td>
+                                    <td>
+                                        {!! ActionButton::grid([
+                                            'type' => 'LINE',
+                                            'buttons' => [
+                                                [
+                                                    'classButton' => 'btn btn-danger btn-delete',
+                                                    'icon' => 'fa fa-trash',
+                                                    'route' => 'integracao.ambientesvirtuais.deletarturma',
+                                                    'id' => $ambienteturma->atr_id,
+                                                    'label' => '',
+                                                    'method' => 'post'
+                                                ]
+                                            ]
+                                        ]) !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>Sem turmas vinculadas ao ambiente virtual</p>
+                @endif
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
 
-</div>
-
-@stop
+@endsection
 
 @section('scripts')
     @parent

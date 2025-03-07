@@ -1,4 +1,4 @@
-@extends('layouts.modulos.integracao')
+@extends('layouts.modulos.default')
 
 @section('title')
     Mapeamento de Notas
@@ -9,23 +9,14 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                <i class="fa fa-filter"></i> Filtrar Dados
-            </h3>
-            <!-- /.box-title -->
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
-            <!-- /.box-tools -->
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0"><i class="fa fa-filter"></i> Filtrar dados</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
+        <!-- /.card-header -->
+        <div class="card-body">
             <div class="row">
-                <form method="POST" action="">
+                <form method="POST" action="" class="w-100 d-flex">
                     {{ csrf_field() }}
                     <div class="col-md-3 form-group @if($errors->has('crs_id'))has-error @endif">
                         {!! Form::label('crs_id', 'Curso*') !!}
@@ -66,8 +57,6 @@
 @stop
 
 @section('scripts')
-    <script src="{{url('/')}}/js/plugins/select2.js"></script>
-
     <script>
         $(function () {
             $('select').select2();

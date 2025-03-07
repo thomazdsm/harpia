@@ -1,37 +1,32 @@
+{{--TODO: Corrigir o collapse--}}
+
 @if(isset($ofertas))
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">
                     Ofertas de Disciplinas
                     @if(isset($turma))
                     - {{ $turma->trm_nome }}
                     @endif
                 </h3>
-                <!-- /.box-title -->
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="card-body">
                 @if(!empty($ofertas))
                 <div id="accordion" class="box-group">
                     @foreach($ofertas as $oferta)
-                    <div class="panel box box-primary">
-                        <div class="box-header with-border">
-                            <div class="box-title">
+                        <div class="card card-light card-outline">
+                        <div class="card-header with-border">
+                            <div class="card-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$loop->index}}">
                                     {{ $oferta['per_nome'] }}
                                 </a>
                             </div>
                         </div>
                         <div id="collapse{{$loop->index}}" class="panel-collapse collapse in">
-                            <div class="box-body">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         @if($oferta['ofertas']->count())
