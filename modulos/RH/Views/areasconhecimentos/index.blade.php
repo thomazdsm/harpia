@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
     Áreas de Conhecimento
@@ -13,20 +13,14 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-filter"></i> Filtrar dados</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-            </div>
-            <!-- /.box-tools -->
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0"><i class="fa fa-filter"></i> Filtrar dados</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="card-body">
             <div class="row">
-                <form method="GET" action="{{ route('rh.areasconhecimentos.index') }}">
+                <form method="GET" action="{{ route('rh.areasconhecimentos.index') }}" class="d-flex w-100">
                     <div class="col-md-9">
                         <input type="text" class="form-control" name="arc_descricao" id="arc_descricao" value="{{Request::input('arc_descricao')}}" placeholder="Nome da área de conhecimento">
                     </div>
@@ -39,8 +33,8 @@
         <!-- /.box-body -->
     </div>
     @if(!is_null($tabela))
-        <div class="box box-primary">
-            <div class="box-header">
+        <div class="card card-primary card-outline">
+            <div class="card-body">
                 {!! $tabela->render() !!}
             </div>
         </div>
@@ -48,8 +42,8 @@
         <div class="text-center">{!! $paginacao->links('pagination::bootstrap-4') !!}</div>
 
     @else
-        <div class="box box-primary">
-            <div class="box-body">Sem registros para apresentar</div>
+        <div class="card card-primary card-outline">
+            <div class="card-body">Sem registros para apresentar</div>
         </div>
     @endif
 @stop

@@ -1,13 +1,13 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
     Módulo de RH
-@stop
+@endsection
 
 @section('subtitle')
     Módulo de RH
-@stop
+@endsection
 
 @section('content')
 
-@stop
+@endsection

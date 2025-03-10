@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
     Bancos
@@ -9,15 +9,14 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de edição de banco</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Formulário de edição de banco</h3>
         </div>
-        <div class="box-body">
-            {!! Form::model($banco, ["route" => ['rh.bancos.edit',$banco->ban_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
+        <div class="card-body">
+            {!! Form::model($banco, ["route" => ['rh.bancos.edit',$banco->ban_id], "method" => "PUT", "id" => "form", "role" => "form", "class" => "d-flex w-100"]) !!}
                 @include('RH::bancos.includes.formulario')
             {!! Form::close() !!}
-
         </div>
     </div>
 @stop

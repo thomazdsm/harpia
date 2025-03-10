@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
     Setores
@@ -9,12 +9,12 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de edição de setor</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Formulário de edição de setor</h3>
         </div>
-        <div class="box-body">
-            {!! Form::model($setor, ["route" => ['rh.setores.edit',$setor->set_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
+        <div class="card-body">
+            {!! Form::model($setor, ["route" => ['rh.setores.edit',$setor->set_id], "method" => "PUT", "id" => "form", "role" => "form", "class" => "w-100 d-flex"]) !!}
                 @include('RH::setores.includes.formulario')
             {!! Form::close() !!}
 

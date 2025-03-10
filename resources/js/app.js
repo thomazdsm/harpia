@@ -4,15 +4,16 @@ window.$ = window.jQuery = require('jquery');
 // Import de bibliotecas
 require('bootstrap');
 require('admin-lte');
-require('inputmask');
+require('moment');
+// require('inputmask');
+var Inputmask = require('inputmask');
+
 require('jquery-validation');
 require('select2');
 
 require('icheck');
 require('jstree');
-// require('bootstrap-datepicker/dist/js/bootstrap-datepicker.min')
-// require('bootstrap-datepicker/js/bootstrap-datepicker');
-// require('bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR');
+require('jquery-datetimepicker');
 require('./Chart.js'); // TODO: verificar caminho
 require('./cpfcnpj.min.js'); // TODO: verificar caminho
 require('fullcalendar');
@@ -36,6 +37,8 @@ $(document).ready(function() {
         timepicker:false,
         format:'d/m/Y'
     });
+
+    $('[data-mask]').Inputmask()
 
     $('.datetime').datetimepicker();
 });
