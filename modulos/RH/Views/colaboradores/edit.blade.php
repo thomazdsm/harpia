@@ -1,7 +1,7 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
-    Colaboradors
+    Colaboradores
 @stop
 
 @section('subtitle')
@@ -9,11 +9,11 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de Edição de Colaborador</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Formulário de Edição de Colaborador</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::model($pessoa,['route' => ['rh.colaboradores.edit', $colaborador->col_id], "method" => "PUT", "id" => "form", "role" => "form"]) !!}
 
             <h4 class="box-title">

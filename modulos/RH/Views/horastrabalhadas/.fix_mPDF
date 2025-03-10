@@ -1,0 +1,50 @@
+No Linux:
+
+Verificar pacote
+php -m | grep mbstring
+
+Se não houver...
+sudo apt-get install php-mbstring
+
+No php.ini
+extension=mbstring
+
+[mbstring]
+; language for internal character representation.
+; This affects mb_send_mail() and mbstring.detect_order.
+; https://php.net/mbstring.language
+mbstring.language = Neutral
+
+; internal/script encoding.
+mbstring.internal_encoding = UTF-8
+
+; http input encoding.
+mbstring.http_input = Auto
+
+; http output encoding.
+mbstring.http_output = UTF-8
+
+; enable automatic encoding translation
+mbstring.encoding_translation = On
+
+; automatic encoding detection order.
+mbstring.detect_order = auto
+
+; substitute_character used when character cannot be converted
+mbstring.substitute_character = none
+
+; Enable strict encoding detection.
+mbstring.strict_detection = Off
+
+; This directive specifies the regex pattern of content types for which mb_output_handler()
+; is activated.
+mbstring.http_output_conv_mimetypes=^(text/|application/xhtml\+xml)
+
+; This directive specifies maximum stack depth for mbstring regular expressions.
+mbstring.regex_stack_limit=100000
+
+; This directive specifies maximum retry count for mbstring regular expressions.
+mbstring.regex_retry_limit=1000000
+
+; O mais importante - habilitar o suporte a mbregex que o mPDF necessita
+mbstring.func_overload = 0

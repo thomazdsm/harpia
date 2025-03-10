@@ -2,20 +2,15 @@
 <div class="row">
     <div class="col-md-12">
         <!-- About Me Box -->
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Períodos Aquisitivos</h3>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title m-0">Períodos Aquisitivos</h3>
                 {{--                <span data-toggle="tooltip" class="badge bg-blue">{{$periodo['dias']}} dias Adquiridos</span>--}}
                 {{--                <span data-toggle="tooltip" class="badge bg-green">{{$periodo['inicio']}} a {{$periodo['fim']}} </span>--}}
                 {{--                <span data-toggle="tooltip" class="badge bg-green">{{$periodo['fim']}} </span>--}}
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="card-body">
                 @foreach($periodos_matriculas as $periodos)
                     <p style="font-size: medium">
                         <b>Matricula Id</b> : {{$periodos['matricula']->mtc_id}} -
@@ -99,7 +94,7 @@
                 @endforeach
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
+            <div class="card-footer">
                 {!! ActionButton::grid([
                     'type' => 'LINE',
                     'buttons' => [

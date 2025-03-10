@@ -5,8 +5,7 @@ window.$ = window.jQuery = require('jquery');
 require('bootstrap');
 require('admin-lte');
 require('moment');
-// require('inputmask');
-var Inputmask = require('inputmask');
+require('inputmask/dist/jquery.inputmask.js');
 
 require('jquery-validation');
 require('select2');
@@ -18,7 +17,6 @@ require('./Chart.js'); // TODO: verificar caminho
 require('./cpfcnpj.min.js'); // TODO: verificar caminho
 require('fullcalendar');
 require('./harpia.js'); // TODO: verificar caminho
-
 $(document).ready(function() {
 
     $("select").select2();
@@ -38,7 +36,10 @@ $(document).ready(function() {
         format:'d/m/Y'
     });
 
-    $('[data-mask]').Inputmask()
+    $('.cpf-mask').inputmask({
+        mask: "999.999.999-99",
+        removeMaskOnSubmit: true
+    });
 
     $('.datetime').datetimepicker();
 });

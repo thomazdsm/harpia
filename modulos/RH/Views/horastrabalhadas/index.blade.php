@@ -1,9 +1,4 @@
-@extends('layouts.modulos.rh')
-
-@section('stylesheets')
-    <link rel="stylesheet" href="{{asset('/css/plugins/select2.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/plugins/datepicker3.css')}}">
-@endsection
+@extends('layouts.modulos.default')
 
 @section('title')
     Horas Trabalhadas
@@ -14,25 +9,19 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-filter"></i> Filtrar dados</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-            </div>
-            <!-- /.box-tools -->
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0"><i class="fa fa-filter"></i> Filtrar dados</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="card-body">
             <div class="row">
-                <form method="GET" action="{{ route('rh.horastrabalhadas.index') }}">
-                    <div class="form-group col-md-3">
+                <form method="GET" action="{{ route('rh.horastrabalhadas.index') }}" class="col-lg-8 d-flex w-100">
+                    <div class="form-group col-md-5">
                         {!! Form::select('htr_pel_id', $periodosLaborais, Request::input('htr_pel_id'), ['id' => 'htr_pel_id', 'class' => 'form-control', 'placeholder' => 'Selecione o período laboral']) !!}
                     </div>
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-5">
                         {!! Form::select('cfn_set_id', $setores, Request::input('cfn_set_id'), ['class' => 'form-control', 'placeholder' => 'Selecione o setor']) !!}
                     </div>
 
@@ -41,7 +30,7 @@
                     </div>
 
                 </form>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {!! ActionButton::grid([
                         'type' => 'LINE',
                         'buttons' => [
@@ -56,6 +45,28 @@
                             ]
                         ])
                     !!}
+                </div>
+                <div class="col-md-2">
+                    @if(!is_null($tabela))
+                        <form id="exportPdf" target="_blank" method="post" action="{{ route('rh.horastrabalhadasdiarias.pdf') }}" class="w-100 d-flex">
+                        {!! ActionButton::grid([
+                                'type' => 'LINE',
+                                'buttons' => [
+                                    [
+                                    'classButton' => 'btn btn-danger',
+                                    'icon' => 'fa fa-file-pdf-o',
+                                    'route' => 'rh.horastrabalhadasdiarias.pdf',
+                                    'label' => 'Exportar para PDF',
+                                    'method' => 'post',
+                                    'id' => '',
+                                    'attributes' => ['id' => 'formPdf']
+                                    ]
+                                ]
+                        ]) !!}
+                        <input type="hidden" name="pel_id" id="periodoLaboralId" value="{{ Request::input('htr_pel_id')}}">
+                        <input type="hidden" name="set_id" id="setorId" value="{{ Request::input('cfn_set_id')}}">
+                    </form>
+                    @endif
                 </div>
 
                 <!-- Modal Mudança Polo/Grupo -->
@@ -72,7 +83,7 @@
                             </div>
                             <div class="modal-body">
 
-                                {!! Form::model([],["route" => "rh.horastrabalhadasdiarias.import", "method" => "POST", "id" => "form", "role" => "form", "class" => "form-horizontal", "enctype" => "multipart/form-data"]) !!}
+                                {!! Form::model([],["route" => "rh.horastrabalhadasdiarias.import", "method" => "POST", "id" => "form", "role" => "form", "class" => "form-horizontal d-flex w-100", "enctype" => "multipart/form-data"]) !!}
 
                                 <div class="form-group @if ($errors->has('csv_file')) has-error @endif">
                                     <div class="col-sm-9">
@@ -99,62 +110,16 @@
         <!-- /.box-body -->
     </div>
     @if(!is_null($tabela))
-        <div class="box box-primary">
-            <div class="box-header">
-                <div class="row" style="align-items: right">
-                    <div class="col-md-2" style="float: right;">
-                        <form id="exportPdf" target="_blank" method="post" action="{{ route('rh.horastrabalhadasdiarias.pdf') }}">
-                            {!! ActionButton::grid([
-                                    'type' => 'LINE',
-                                    'buttons' => [
-                                        [
-                                        'classButton' => 'btn btn-danger',
-                                        'icon' => 'fa fa-file-pdf-o',
-                                        'route' => 'rh.horastrabalhadasdiarias.pdf',
-                                        'label' => 'Exportar para PDF',
-                                        'method' => 'post',
-                                        'id' => '',
-                                        'attributes' => ['id' => 'formPdf']
-                                        ]
-                                    ]
-                            ]) !!}
-                            <input type="hidden" name="pel_id" id="periodoLaboralId" value="{{ Request::input('htr_pel_id')}}">
-                            <input type="hidden" name="set_id" id="setorId" value="{{ Request::input('cfn_set_id')}}">
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box-body">
+        <div class="card card-primary card-outline">
+            <div class="card-body">
                 {!! $tabela->render() !!}
             </div>
         </div>
 
         <div class="text-center">{!! $paginacao->links('pagination::bootstrap-4') !!}</div>
     @else
-        <div class="box box-primary">
-            <div class="box-body">Sem registros para apresentar</div>
+        <div class="card card-primary card-outline">
+            <div class="card-body">Sem registros para apresentar</div>
         </div>
     @endif
-@stop
-
-
-
-@section('scripts')
-    <script src="{{asset('/js/plugins/select2.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.pt-BR.js')}}" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("select").select2();
-        });
-    </script>
-
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'pt-BR'
-        });
-    </script>
-
 @endsection

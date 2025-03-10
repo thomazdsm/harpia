@@ -22,7 +22,7 @@
             <div class="row">
                 <form method="GET" action="{{ route('rh.colaboradores.index') }}" class="w-100 d-flex">
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="pes_cpf" id="pes_cpf" data-inputmask='"mask": "(999) 999-9999"' data-mask
+                        <input type="text" class="form-control cpf-mask" name="pes_cpf" id="pes_cpf"
                                value="{{Request::input('pes_cpf')}}" placeholder="CPF">
                     </div>
                     <div class="col-md-2">

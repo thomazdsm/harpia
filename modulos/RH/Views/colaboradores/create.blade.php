@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('title')
     Colaboradores
@@ -9,12 +9,12 @@
 @stop
 
 @section('content')
-    <div class="box box-success">
-        <div class="box-header with-border">
-            <h3 class="box-title">Formulário de Cadastro de Colaboradores</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Formulário de Cadastro de Colaboradores</h3>
                 <span class="label label-success pull-right">Colaborador</span>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             {!! Form::open(["url" => url('/') . "/rh/colaboradores/create", "method" => "POST", "id" => "form", "role" => "form"]) !!}
 
             <h4 class="box-title">

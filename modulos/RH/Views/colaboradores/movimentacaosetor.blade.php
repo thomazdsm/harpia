@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset('/css/plugins/select2.css')}}">
@@ -14,15 +14,14 @@
 @stop
 
 @section('content')
-
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Gerenciamento de funções de colaborador</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Gerenciamento de funções de colaborador</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             <h4>Funções do Colaborador</h4>
             <div class="row">
-                {!! Form::open(array('route' => ['rh.colaboradores.movimentacaosetor.funcao.create', $colaborador->col_id], 'method' => 'POST', 'id' => 'form')) !!}
+                {!! Form::open(array('route' => ['rh.colaboradores.movimentacaosetor.funcao.create', $colaborador->col_id], 'method' => 'POST', 'id' => 'form', 'class' => 'w-100 d-flex')) !!}
 
                 <div class="form-group col-md-3">
                     {!! Form::select('cfn_set_id', $setores, [], ['class' => 'form-control', 'placeholder' => 'Selecione o setor']) !!}
@@ -35,7 +34,12 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    {!! Form::text('cfn_data_inicio', old('cfn_data_inicio'), ['class' => 'form-control datepicker', 'data-provide' => 'datepicker', 'date-date-format' => 'dd/mm/yyyy', 'placeholder' => 'Data de Início']) !!}
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        {!! Form::text('cfn_data_inicio', old('cfn_data_inicio'), ['class' => 'form-control only-date', 'data-target' => '#reservationdate']) !!}
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
                     @if ($errors->has('cfn_data_inicio')) <p style="color: red" class="help-block">{{ $errors->first('cfn_data_inicio') }}</p> @endif
                 </div>
 
@@ -132,14 +136,7 @@
 @stop
 
 @section('scripts')
-    <script src="{{asset('/js/plugins/select2.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.pt-BR.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("select").select2();
-        });
-
         $('form').submit(function (e) {
 
             if (!$(e.target).hasClass('delete')) {
@@ -165,18 +162,7 @@
             });
 
         });
-
-
     </script>
-
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'pt-BR'
-        });
-    </script>
-
-
 @endsection
 
 

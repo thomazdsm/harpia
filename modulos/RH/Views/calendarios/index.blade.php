@@ -1,4 +1,4 @@
-@extends('layouts.modulos.rh')
+@extends('layouts.modulos.default')
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset('/css/plugins/fullcalendar.min.css')}}">
@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-3">
-            <div class=" box box-primary jarviswidget jarviswidget-color-blueDark">
+            <div class="card card-primary jarviswidget jarviswidget-color-blueDark">
                 <header>
                     <h2 style="padding-left: 10px">Adicionar Eventos</h2>
                 </header>
@@ -79,8 +79,8 @@
         </div>
 
         <div class="col-md-9">
-            <div class="box box-primary">
-                <div class="box-body no-padding">
+            <div class="card card-primary">
+                <div class="card-body no-padding">
                     <!-- THE CALENDAR -->
                     <div id="calendar"></div>
                 </div>
