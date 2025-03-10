@@ -10,7 +10,9 @@ require('select2');
 
 require('icheck');
 require('jstree');
-require('bootstrap-datepicker');
+// require('bootstrap-datepicker/dist/js/bootstrap-datepicker.min')
+// require('bootstrap-datepicker/js/bootstrap-datepicker');
+// require('bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR');
 require('./Chart.js'); // TODO: verificar caminho
 require('./cpfcnpj.min.js'); // TODO: verificar caminho
 require('fullcalendar');
@@ -28,4 +30,12 @@ $(document).ready(function() {
     $(document).on('click', '.btn-group .dropdown-toggle', function() {
         $(this).siblings('.dropdown-menu').toggle();
     });
+
+    //Date picker
+    $('.only-date').datetimepicker({
+        timepicker:false,
+        format:'d/m/Y'
+    });
+
+    $('.datetime').datetimepicker();
 });

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row d-flex w-100">
     <div class="form-group col-md-3">
         {!! Form::label('crs_id', 'Curso*', ['class' => 'control-label']) !!}
         {!! Form::select('crs_id', $cursos, null, ['class' => 'form-control', 'placeholder' => 'Escolha um curso']) !!}
@@ -16,7 +16,7 @@
         {!! Form::select('grp_id', [], null, ['class' => 'form-control']) !!}
     </div>
 </div>
-<div class="row">
+<div class="row d-flex w-100">
     <div class="form-group col-md-3">
         {!! Form::label('tut_id', 'Tutor*', ['class' => 'control-label']) !!}
         {!! Form::select('tut_id', [], null, ['class' => 'form-control']) !!}

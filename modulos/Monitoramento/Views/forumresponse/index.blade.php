@@ -1,19 +1,19 @@
-@extends('layouts.modulos.integracao')
+@extends('layouts.modulos.default')
 
 @section('title')
     Ambientes virtuais disponíveis
-@stop
+@endsection
 
 @section('subtitle')
 
-@stop
+@endsection
 
 @section('content')
     <div class="row">
         @if(count($ambientes))
             @foreach($ambientes as $ambiente)
                 <div class="col-md-4">
-                    <div class="small-box bg-aqua">
+                    <div class="small-box bg-info">
                         <div class="inner">
                             <h4>{{$ambiente->amb_nome}}</h4>
 
@@ -33,4 +33,4 @@
             <p>Sem serviços adicionados ao ambiente virtual</p>
         @endif
     </div>
-@stop
+@endsection

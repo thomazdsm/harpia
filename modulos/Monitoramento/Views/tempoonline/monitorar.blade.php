@@ -1,8 +1,9 @@
-@extends('layouts.modulos.monitoramento')
+@extends('layouts.modulos.default')
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset('/css/plugins/select2.css')}}">
     <link rel="stylesheet" href="{{asset('/css/plugins/datepicker3.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 @endsection
 
 @section('title')
@@ -14,47 +15,29 @@
 @stop
 
 @section('content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Visualização de dados do ambiente virtual</h3>
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title m-0">Visualização de dados do ambiente virtual</h3>
         </div>
-        <div class="box-body">
-            {!! Form::open(["url" => url('/') . "/monitoramento/ambientesvirtuais/create", "method" => "POST", "id" => "form", "role" => "form"]) !!}
+        <div class="card-body">
+            {!! Form::open(["url" => url('/') . "/monitoramento/ambientesvirtuais/create", "method" => "POST", "id" => "form", "role" => "form" , "class" => "w-100 d-flex flex-wrap"]) !!}
             @include('Monitoramento::tempoonline.includes.formulario')
             {!! Form::close() !!}
         </div>
-        <div class="text-center margin" id="grafico"></div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="text-center margin" id="grafico"></div>
+        </div>
     </div>
 @stop
 
 @section('scripts')
-    <script src="{{asset('/js/plugins/select2.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/plugins/bootstrap-datepicker.pt-BR.js')}}" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("select").select2();
-        });
-    </script>
+{{--    <script src="{{asset('/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>--}}
+{{--    <script src="{{asset('/js/plugins/bootstrap-datepicker.pt-BR.js')}}" type="text/javascript"></script>--}}
 
-    <script type="text/javascript">
-        $('.datepicker2').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'pt-BR'
-        });
-        var myDate = new Date();
-        var prettyDate = (myDate.getDate() - 7) + '/' + (myDate.getMonth() + 1) + '/' + (myDate.getFullYear());
-        $(".datepicker2").datepicker('setDate', prettyDate);
-    </script>
-
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'pt-BR'
-        });
-
-        $(".datepicker").datepicker('setDate', new Date());
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
     <script src="{{asset('/js/plugins/Chart.min.js')}}" type="text/javascript"></script>
 @endsection
