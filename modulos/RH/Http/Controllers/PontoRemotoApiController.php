@@ -5,7 +5,6 @@ namespace Modulos\RH\Http\Controllers;
 use Illuminate\Http\Request;
 use Modulos\Core\Http\Controller\BaseController;
 use Modulos\RH\Models\Colaborador;
-use Modulos\Geral\Models\Pessoa;
 use Modulos\RH\Services\PontoRemotoService;
 
 class PontoRemotoApiController extends BaseController
@@ -27,24 +26,13 @@ class PontoRemotoApiController extends BaseController
 
     private function registrar(Request $request, string $tipo)
     {
-        $rules = [
-            'email' => 'required|email',
-            'data_nascimento' => 'required|date_format:Y-m-d',
-        ];
-
         if ($tipo === 'saida') {
-            $rules['atividades'] = 'required|string|min:5|max:5000';
+            $request->validate([
+                'atividades' => 'required|string|min:5|max:5000',
+            ]);
         }
 
-        $request->validate($rules);
-
-        $pessoa = Pessoa::where('pes_email', $request->email)->first();
-
-        if (!$pessoa) {
-            return response()->json(['error' => 'Credenciais invalidas.'], 401);
-        }
-
-        $colaborador = Colaborador::where('col_pes_id', $pessoa->pes_id)
+        $colaborador = Colaborador::where('col_pes_id', auth()->user()->usr_pes_id)
             ->where('col_status', 'ativo')
             ->first();
 
