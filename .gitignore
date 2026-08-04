@@ -24,3 +24,4 @@ codecoverage
 .github
 modulos/.mcp.json
 /docs/facial
+opencode.json
