@@ -1,8 +1,12 @@
 <?php
 
-Route::group(['prefix' => 'api/rh'], function () {
+//Route::group(['prefix' => 'api/rh'], function () {
+Route::group(['prefix' => 'api/rh', 'middleware' => ['throttle:30,1']], function () {
     Route::group(['prefix' => 'colaboradores'], function () {
         Route::get('/foto/{id}', '\Modulos\RH\Http\Controllers\ColaboradoresController@getFotoFacial')->name('rh.api.colaboradores.foto');
+        Route::get('/foto/{id}', '\Modulos\RH\Http\Controllers\ColaboradoresController@getFotoFacial')
+            ->middleware('auth')
+            ->name('rh.api.colaboradores.foto');
         Route::get('/show/{id}', '\Modulos\RH\Http\Controllers\ColaboradoresController@getShow')->name('rh.colaboradores.show');
     });
 
@@ -15,6 +19,12 @@ Route::group(['prefix' => 'api/rh'], function () {
     // Ponto remoto API — Fase 11 (sem middleware auth para permitir autenticacao por email/data_nascimento)
     Route::post('/ponto-remoto/entrada', '\Modulos\RH\Http\Controllers\PontoRemotoApiController@postEntrada')->name('rh.api.pontoremoto.entrada');
     Route::post('/ponto-remoto/saida', '\Modulos\RH\Http\Controllers\PontoRemotoApiController@postSaida')->name('rh.api.pontoremoto.saida');
+    Route::post('/ponto-remoto/entrada', '\Modulos\RH\Http\Controllers\PontoRemotoApiController@postEntrada')
+        ->middleware('auth')
+        ->name('rh.api.pontoremoto.entrada');
+    Route::post('/ponto-remoto/saida', '\Modulos\RH\Http\Controllers\PontoRemotoApiController@postSaida')
+        ->middleware('auth')
+        ->name('rh.api.pontoremoto.saida');
 });
 
 Route::group(['prefix' => 'rh', 'middleware' => ['auth']], function () {

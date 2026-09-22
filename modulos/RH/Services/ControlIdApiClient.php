@@ -4,6 +4,7 @@ namespace Modulos\RH\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
+use Illuminate\Support\Facades\Cache;
 use InvalidArgumentException;
 use JsonException;
 use Modulos\RH\Models\DispositivoAcesso;
@@ -11,6 +12,8 @@ use Modulos\RH\Models\DispositivoAcesso;
 class ControlIdApiClient
 {
     private Client $http;
+
+    private array $cacheSessoes = [];
 
     public function __construct(?Client $http = null)
     {
@@ -140,13 +143,28 @@ class ControlIdApiClient
 
     private function obterSessao(DispositivoAcesso $dispositivo): string
     {
+        $chave = 'controlid_session_' . $dispositivo->dis_id;
+
+        if (isset($this->cacheSessoes[$chave])) {
+            return $this->cacheSessoes[$chave];
+        }
+
         $response = $this->login($dispositivo);
 
         if (empty($response['session']) || !is_string($response['session'])) {
             throw new InvalidArgumentException('Nao foi possivel obter uma sessao valida no iDFace.');
         }
 
+        $this->cacheSessoes[$chave] = $response['session'];
+
         return $response['session'];
+    }
+
+    public function invalidarSessao(DispositivoAcesso $dispositivo): void
+    {
+        $chave = 'controlid_session_' . $dispositivo->dis_id;
+        unset($this->cacheSessoes[$chave]);
+        Cache::forget($chave);
     }
 
     private function login(DispositivoAcesso $dispositivo): array

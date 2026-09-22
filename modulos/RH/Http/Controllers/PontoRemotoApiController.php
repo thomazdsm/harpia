@@ -33,18 +33,12 @@ class PontoRemotoApiController extends BaseController
         ];
 
         if ($tipo === 'saida') {
-            $rules['atividades'] = 'required|string|min:5|max:5000';
+            $request->validate([
+                'atividades' => 'required|string|min:5|max:5000',
+            ]);
         }
 
-        $request->validate($rules);
-
-        $pessoa = Pessoa::where('pes_email', $request->email)->first();
-
-        if (!$pessoa) {
-            return response()->json(['error' => 'Credenciais invalidas.'], 401);
-        }
-
-        $colaborador = Colaborador::where('col_pes_id', $pessoa->pes_id)
+        $colaborador = Colaborador::where('col_pes_id', auth()->user()->usr_pes_id)
             ->where('col_status', 'ativo')
             ->first();
 
