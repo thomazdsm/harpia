@@ -39,25 +39,31 @@ class ModulosServiceProvider extends ServiceProvider
         $modulosPath = base_path('modulos');
         $diretorios = array_filter(glob($modulosPath . '/*'), 'is_dir');
 
-        while (list(, $modulo) = each($modulos)) {
+        foreach ($diretorios as $dir) {
+            $modulo = basename($dir);
 
-            // Load the routes for each of the modules
-            if (file_exists(__DIR__.'/'.$modulo.'/routes.php')) {
+            if (!$this->isModuleActive($dir)) {
+                continue;
+            }
+
+            // Carrega as Rotas
+            if (file_exists($dir . '/routes.php')) {
                 Route::group([
                     'middleware' => 'web',
-                    'namespace' => $modulo,
-                ], function ($router) use ($modulo) {
-                    require __DIR__.'/'.$modulo.'/routes.php';
+                    'namespace' => "Modulos\\{$modulo}",
+                ], function ($router) use ($dir) {
+                    require $dir . '/routes.php';
                 });
             }
 
-            // Load the views
-            if (is_dir(__DIR__.'/'.$modulo.'/Views')) {
-                $this->loadViewsFrom(__DIR__.'/'.$modulo.'/Views', $modulo);
+            // Carrega as Views
+            if (is_dir($dir . '/Views')) {
+                $this->loadViewsFrom($dir . '/Views', $modulo);
             }
 
-            if (is_dir(__DIR__.'/'.$modulo.'/Database/Migrations')) {
-                $this->loadMigrationsFrom(__DIR__.'/'.$modulo.'/Database/Migrations');
+            // Carrega as Migrations
+            if (is_dir($dir . '/Database/Migrations')) {
+                $this->loadMigrationsFrom($dir . '/Database/Migrations');
             }
         }
     }
