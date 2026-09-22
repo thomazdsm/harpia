@@ -3,7 +3,8 @@
         "copilot",
         "claude_code",
         "codex",
-        "opencode"
+        "opencode",
+        "antigravity"
     ],
     "cloud": false,
     "guidelines": true,
@@ -11,6 +12,8 @@
     "nightwatch": false,
     "sail": false,
     "skills": [
-        "laravel-best-practices"
+        "infer-conventions",
+        "laravel-best-practices",
+        "testing-best-practices"
     ]
 }
