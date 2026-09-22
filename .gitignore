@@ -22,7 +22,11 @@ codecoverage
 .claude
 .codex
 .github
-modulos/.mcp.json
+.junie
+.mcp.json
+*.mcp.json
+mcp.json
+mcp_config.json
 /docs/facial
 opencode.json
 
