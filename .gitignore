@@ -4,6 +4,7 @@
 /public/build
 /public/hot
 /storage/uploads
+/tests/storage
 Homestead.yaml
 Homestead.json
 .env
@@ -39,5 +40,7 @@ modulos/ProducaoDocente
 planejamento_fluxo_atesto_pagamento_v2.md
 
 *.bkp
+*.sqlite
+database/*.sqlite
 .env*
 !.env.example

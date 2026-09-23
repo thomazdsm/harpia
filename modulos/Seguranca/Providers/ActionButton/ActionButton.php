@@ -19,7 +19,7 @@ class ActionButton
         $seguranca = $this->app[Seguranca::class];
 
         foreach ($buttons as $key => $button) {
-            if (!env('IS_SECURITY_ENNABLED') || $seguranca->haspermission($button->getRoute())) {
+            if (!Seguranca::isSecurityEnabled() || $seguranca->haspermission($button->getRoute())) {
                 $render .= '<a href="' . route($button->getRoute(), $button->getParameters()) . '" target="' . $button->getTarget() . '" class="' . $button->getStyle() . '"> <i class="' . $button->getIcon() . '"></i> ' . $button->getName() . '</a>';
             }
         }
@@ -62,7 +62,7 @@ class ActionButton
                 $rota = $button['route'];
                 $parameters = isset($button['parameters']) ? $button['parameters'] : [];
 
-                if (!env('IS_SECURITY_ENNABLED') || $seguranca->haspermission($rota)) {
+                if (!Seguranca::isSecurityEnabled() || $seguranca->haspermission($rota)) {
                     $flag += 1;
 
                     // TRADUTOR: Ajusta cores legadas (ex: text-red vira text-danger)
@@ -115,7 +115,7 @@ class ActionButton
             $rota = $button['route'];
             $parameters = isset($button['parameters']) ? $button['parameters'] : [];
 
-            if (!env('IS_SECURITY_ENNABLED') || $seguranca->haspermission($rota)) {
+            if (!Seguranca::isSecurityEnabled() || $seguranca->haspermission($rota)) {
 
                 // TRADUTOR
                 $btnClass = str_replace('btn-default', 'btn-outline-secondary btn-sm', $button['classButton']);
@@ -151,7 +151,7 @@ class ActionButton
                 $rota = $button['route'];
                 $parameters = isset($button['parameters']) ? $button['parameters'] : [];
 
-                if (!env('IS_SECURITY_ENNABLED') || $seguranca->haspermission($rota)) {
+                if (!Seguranca::isSecurityEnabled() || $seguranca->haspermission($rota)) {
                     $flag += 1;
 
                     // TRADUTOR

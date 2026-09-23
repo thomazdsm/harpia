@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'security_enabled' => env('IS_SECURITY_ENABLED', env('IS_SECURITY_ENNABLED', true)),
+
     'prelogin_openroutes' => array(
         'auth.login',
         'index',

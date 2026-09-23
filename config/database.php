@@ -41,7 +41,7 @@ return [
 
         'sqlite_testing' => [
             'driver'   => 'sqlite',
-            'database' => ':memory:',
+            'database' => env('DB_TEST_DATABASE', database_path('database_testing.sqlite')),
             'prefix'   => '',
         ],
 
@@ -98,6 +98,8 @@ return [
     */
 
     'redis' => [
+
+        'client' => env('REDIS_CLIENT', 'phpredis'),
 
         'cluster' => false,
 

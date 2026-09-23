@@ -5,9 +5,15 @@ version: '2'
 volumes:
   harpia-mysql-data:
     driver: local
+  harpia-postgres-data:
+    driver: local
   # Redis Data
   #harpia-redis-data:
   #  driver: local
+
+networks:
+  harpia-db:
+    driver: bridge
 
 services:
   # MySQL (5.7)
@@ -43,10 +49,9 @@ services:
     networks:
       - harpia-db
     environment:
-      - MYSQL_ROOT_PASSWORD=harpia
-      - MYSQL_DATABASE=harpia
-      - MYSQL_USER=harpia
-      - MYSQL_PASSWORD=harpia
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-harpia}
+      POSTGRES_DB: ${DB_DATABASE:-harpia}
+      POSTGRES_USER: ${DB_USERNAME:-harpia}
 
   # Redis
   #cache:
@@ -58,11 +63,9 @@ services:
   #  ports:
   #    - "6379:6379"
 
-  # PHP (with Caddy)
+  # PHP (with Apache)
   web:
-    #image: ambientum/php:7.0-caddy
-    #image: ambientum/php:7.0-nginx
-    image: ambientum/php:7.0-apache
+    image: ambientum/php:8.3-apache
     container_name: harpia-web
     restart: unless-stopped
     working_dir: /var/www/app
@@ -70,13 +73,14 @@ services:
       - .:/var/www/app
     ports:
       - "80:8080"
+    networks:
+      - harpia-db
     links:
       - mysql
-    #  - cache
 
   # Laravel Queues
   #queue:
-  #  image: ambientum/php:7.0
+  #  image: ambientum/php:8.3
   #  container_name: harpia-queue
   #  command: php artisan queue:listen
   #  volumes:

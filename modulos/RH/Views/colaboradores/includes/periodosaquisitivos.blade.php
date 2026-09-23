@@ -73,7 +73,6 @@
                                                                    ],
                                                                    [
                                                                        'classButton' => 'btn btn-success btn-sm btn-confirmar-ferias',
-                                                                       'classButton' => 'btn btn-success btn-sm',
                                                                        'icon' => 'fa fa-check',
                                                                        'route' => 'rh.colaboradores.periodosgozo.confirm',
                                                                        'parameters' => ['id' => $periodoGozo->pgz_id],
