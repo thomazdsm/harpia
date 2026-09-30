@@ -11,13 +11,13 @@
                         <div class="card-header">
                             <h3 class="card-title">{{$matricula->turma->ofertacurso->curso->crs_nome}}</h3>
                             @if($matricula->mat_situacao == 'cursando')
-                                <span class="label label-info">Cursando</span>
+                                <span class="badge text-bg-info ms-2">Cursando</span>
                             @elseif($matricula->mat_situacao == 'reprovado')
-                                <span class="label label-danger">Reprovado</span>
+                                <span class="badge text-bg-danger ms-2">Reprovado</span>
                             @elseif($matricula->mat_situacao == 'concluido')
-                                <span class="label label-success">Concluído</span>
+                                <span class="badge text-bg-success ms-2">Concluído</span>
                             @else
-                                <span class="label label-warning">{{ucfirst($matricula->mat_situacao)}}</span>
+                                <span class="badge text-bg-warning ms-2">{{ucfirst($matricula->mat_situacao)}}</span>
                             @endif
 
                             <div class="card-tools">
@@ -28,17 +28,18 @@
                         </div>
                         <div class="card-body">
                             @if (!empty($gradesCurriculares[$matricula->mat_id]['periodos_letivos']))
-                                <div class="card-group" id="accordion">
+                                <div id="accordion">
                                     @foreach ($gradesCurriculares[$matricula->mat_id]['periodos_letivos'] as $periodo)
-                                        <div class="panel card card-danger">
-                                            <div class="card-header with-border">
+                                        <div class="card card-danger mb-2">
+                                            <div class="card-header">
                                                 <h4 class="card-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$j}}">
+                                                    <a class="text-white text-decoration-none d-block" data-bs-toggle="collapse" data-bs-parent="#accordion" href="#collapse{{$j}}">
+                                                        <i class="fa fa-chevron-down"></i>
                                                         {{$periodo['per_nome']}}
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="collapse{{$j}}" class="panel-collapse collapse in">
+                                            <div id="collapse{{$j}}" class="collapse show">
                                                 <div class="card-body">
                                                     @if (!empty($periodo['ofertas_disciplinas']))
                                                         <table class="table table-bordered">
@@ -71,21 +72,21 @@
                                                                     <td>{{$disciplina->mof_mediafinal}}</td>
                                                                     <td>
                                                                         @if($disciplina->mof_situacao_matricula == 'cursando')
-                                                                            <span class="label label-primary">Cursando</span>
+                                                                            <span class="badge text-bg-primary">Cursando</span>
                                                                         @elseif($disciplina->mof_situacao_matricula == 'cancelado')
-                                                                            <span class="label label-warning">Cancelado</span>
+                                                                            <span class="badge text-bg-warning">Cancelado</span>
                                                                         @elseif($disciplina->mof_tipo_matricula == 'aproveitamento' and $disciplina->mof_situacao_matricula == 'aprovado_media')
-                                                                            <span class="label label-success">Aproveitamento</span>
+                                                                            <span class="badge text-bg-success">Aproveitamento</span>
                                                                         @elseif($disciplina->mof_situacao_matricula == 'aprovado_media')
-                                                                            <span class="label label-success">Aprovado por Média</span>
+                                                                            <span class="badge text-bg-success">Aprovado por Média</span>
                                                                         @elseif($disciplina->mof_situacao_matricula == 'aprovado_final')
-                                                                            <span class="label label-success">Aprovado por Final</span>
+                                                                            <span class="badge text-bg-success">Aprovado por Final</span>
                                                                         @elseif($disciplina->mof_situacao_matricula == 'reprovado_media')
-                                                                            <span class="label label-danger">Reprovado por Média</span>
+                                                                            <span class="badge text-bg-danger">Reprovado por Média</span>
                                                                         @elseif($disciplina->mof_situacao_matricula == 'reprovado_final')
-                                                                            <span class="label label-danger">Reprovado por Final</span>
+                                                                            <span class="badge text-bg-danger">Reprovado por Final</span>
                                                                         @else
-                                                                            <span class="label label-warning">Não Matriculado</span>
+                                                                            <span class="badge text-bg-warning">Não Matriculado</span>
                                                                         @endif
                                                                     </td>
                                                                 </tr>

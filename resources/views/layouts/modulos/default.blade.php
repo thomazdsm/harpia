@@ -8,9 +8,9 @@
                     <span class="h2 m-0">@yield('title')</span> <span>@yield('subtitle')</span>
                 </div><!-- /.col -->
                 <div class="col-sm-2">
-                    <ol class="float-sm-right">
+                    <div class="d-flex justify-content-end gap-2">
                         @yield('actionButton')
-                    </ol>
+                    </div>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

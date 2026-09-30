@@ -108,3 +108,42 @@
 .text-gray-dark {
   color: #343a40 !important;
 }
+
+// Background + Text Color (widgets small-box) - AdminLTE V3
+// O AdminLTE 4 não gera mais essas classes; sem elas o widget "small-box"
+// (ex: seleção de módulos) fica sem cor de fundo e aparece cinza.
+
+.text-bg-red {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+}
+
+.text-bg-blue {
+  background-color: #007bff !important;
+  color: #fff !important;
+}
+
+.text-bg-green {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+.text-bg-aqua {
+  background-color: #00c0ef !important;
+  color: #fff !important;
+}
+
+.text-bg-yellow {
+  background-color: #ffc107 !important;
+  color: #1f2d3d !important;
+}
+
+.text-bg-olive {
+  background-color: #3d9970 !important;
+  color: #fff !important;
+}
+
+.text-bg-orange {
+  background-color: #fd7e14 !important;
+  color: #fff !important;
+}
