@@ -20,7 +20,7 @@
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img class="profile-user-img img-circle"
-                                         style="border-radius: 50%;"
+                                         style="border-radius: 50%; max-height: 160px; max-width: 160px"
                                          src="{{ route('seguranca.profile.profile-picture', \Illuminate\Support\Facades\Auth::user()->usr_profile_picture_id ?? 0) }}"
                                          alt="User profile picture">
                                 </div>
