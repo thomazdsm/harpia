@@ -76,9 +76,14 @@ return [
     |
     */
 
+//    'from' => [
+//        'address' => null,
+//        'name' => null,
+//    ],
+
     'from' => [
-        'address' => null,
-        'name' => null,
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*

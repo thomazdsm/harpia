@@ -23,7 +23,7 @@
                 <form action="{{url('/forget-password')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        {!! Form::text('email', old('email'), array('placeholder' => 'E-mail', 'class'=>'form-control')) !!}
+                        <input type="text" name="email" value="{{ old('email') }}" placeholder="E-mail" class="form-control">
                         <div class="input-group-text">
                             <span class="bi bi-envelope"></span>
                         </div>
@@ -42,8 +42,8 @@
                     <!--end::Row-->
                 </form>
 
-                <p class="mb-1">
-                    <a class="text-right col-md-12" href="{{url('/login')}}">Login</a>
+                <p class="my-1" style="float: right">
+                    <a class="text-right col-md-12" href="{{url('/login')}}">Acessar a página de Login</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

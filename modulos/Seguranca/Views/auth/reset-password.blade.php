@@ -31,14 +31,14 @@
                         @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" >
+                        <input type="password" name="password"  class="form-control">
                         <div class="input-group-text">
                             <span class="bi bi-lock-fill"></span>
                         </div>
                         @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password_confirmation" >
+                        <input type="password" name="password_confirmation"  class="form-control">
                         <div class="input-group-text">
                             <span class="bi bi-lock-fill"></span>
                         </div>
@@ -57,8 +57,8 @@
                     <!--end::Row-->
                 </form>
 
-                <p class="mb-1">
-                    <a class="text-right col-md-12" href="{{url('/login')}}">Login</a>
+                <p class="my-1" style="float: right;">
+                    <a class="text-right col-md-12" href="{{url('/login')}}">Acessar a página de Login</a>
                 </div>
             </div>
             <!-- /.login-card-body -->

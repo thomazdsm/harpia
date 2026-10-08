@@ -55,7 +55,7 @@
                     <!--end::Row-->
                 </form>
 
-                <p class="mb-1">
+                <p class="my-1"  style="float: right">
                     <a class="text-right col-md-12" href="{{url('/forget-password')}}">Esqueceu sua senha?</a>
                 </p>
             </div>
