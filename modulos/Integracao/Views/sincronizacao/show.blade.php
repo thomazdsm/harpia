@@ -135,9 +135,8 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("select").select2();
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+        $("select").select2();
 
         $(document).on('click', '.btn-delete', function (event) {
             event.preventDefault();
@@ -159,8 +158,7 @@
                 }
             });
         });
-
-
+        });
     </script>
 
 

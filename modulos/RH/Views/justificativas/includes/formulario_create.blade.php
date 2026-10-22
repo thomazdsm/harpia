@@ -73,7 +73,7 @@
     <script src="{{asset('/js/plugins/select2.js')}}" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             $("select").select2();
         });
     </script>
