@@ -29,7 +29,7 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             $('#vfp_vin_id').change(function() {
                 var value = $(this).val();
 

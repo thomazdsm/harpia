@@ -78,7 +78,7 @@
 
 @section('scripts')
     <script>
-        $(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             $(document).on('click', '.btn-mapear', function (event) {
                 var ofd_id = $(event.currentTarget).data('id');
 
