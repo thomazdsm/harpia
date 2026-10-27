@@ -14,53 +14,52 @@
             <h3 class="card-title m-0"><i class="fa fa-filter"></i> Filtrar dados</h3>
         </div>
         <div class="card-body">
-            <form method="GET" action="{{ route('rh.eventosacesso.index') }}" class="w-100">
-                <div class="row">
-                    <div class="col-md-3 px-1">
-                        <input type="text" name="pes_nome" class="form-control" placeholder="Nome" value="{{ request('pes_nome') }}">
-                    </div>
-                    <div class="col-md-2 px-1">
-                        <select name="eva_tipo" class="form-control">
-                            <option value="">Todos os tipos</option>
-                            <option value="entrada" {{ request('eva_tipo') === 'entrada' ? 'selected' : '' }}>Entrada</option>
-                            <option value="saida" {{ request('eva_tipo') === 'saida' ? 'selected' : '' }}>Saída</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 px-1">
-                        <select name="eva_origem" class="form-control">
-                            <option value="">Todas as origens</option>
-                            <option value="idface" {{ request('eva_origem') === 'idface' ? 'selected' : '' }}>iDFace</option>
-                            <option value="home_office" {{ request('eva_origem') === 'home_office' ? 'selected' : '' }}>Home Office</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 px-1">
-                        <select name="eva_status" class="form-control">
-                            <option value="">Todos os status</option>
-                            <option value="bruto" {{ request('eva_status') === 'bruto' ? 'selected' : '' }}>Bruto</option>
-                            <option value="processado" {{ request('eva_status') === 'processado' ? 'selected' : '' }}>Processado</option>
-                            <option value="pendente" {{ request('eva_status') === 'pendente' ? 'selected' : '' }}>Pendente</option>
-                            <option value="aprovado" {{ request('eva_status') === 'aprovado' ? 'selected' : '' }}>Aprovado</option>
-                            <option value="reprovado" {{ request('eva_status') === 'reprovado' ? 'selected' : '' }}>Reprovado</option>
-                            <option value="erro" {{ request('eva_status') === 'erro' ? 'selected' : '' }}>Erro</option>
-                            <option value="duplicado" {{ request('eva_status') === 'duplicado' ? 'selected' : '' }}>Duplicado</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 px-1">
-                        <div class="col-md-6 px-1" style="float: left;">
+            <div class="d-flex row" >
+                <form method="GET" action="{{ route('rh.eventosacesso.index') }}" class="col-md-10 d-flex row">
+                    <div class="row">
+                        <div class="col-md-4 px-1">
+                            <input type="text" name="pes_nome" class="form-control" placeholder="Nome" value="{{ request('pes_nome') }}">
+                        </div>
+                        <div class="col-md-2 px-1">
+                            <select name="eva_tipo" class="form-control">
+                                <option value="">Todos os tipos</option>
+                                <option value="entrada" {{ request('eva_tipo') === 'entrada' ? 'selected' : '' }}>Entrada</option>
+                                <option value="saida" {{ request('eva_tipo') === 'saida' ? 'selected' : '' }}>Saída</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 px-1">
+                            <select name="eva_origem" class="form-control">
+                                <option value="">Todas as origens</option>
+                                <option value="idface" {{ request('eva_origem') === 'idface' ? 'selected' : '' }}>iDFace</option>
+                                <option value="home_office" {{ request('eva_origem') === 'home_office' ? 'selected' : '' }}>Home Office</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 px-1">
+                            <select name="eva_status" class="form-control">
+                                <option value="">Todos os status</option>
+                                <option value="bruto" {{ request('eva_status') === 'bruto' ? 'selected' : '' }}>Bruto</option>
+                                <option value="processado" {{ request('eva_status') === 'processado' ? 'selected' : '' }}>Processado</option>
+                                <option value="pendente" {{ request('eva_status') === 'pendente' ? 'selected' : '' }}>Pendente</option>
+                                <option value="aprovado" {{ request('eva_status') === 'aprovado' ? 'selected' : '' }}>Aprovado</option>
+                                <option value="reprovado" {{ request('eva_status') === 'reprovado' ? 'selected' : '' }}>Reprovado</option>
+                                <option value="erro" {{ request('eva_status') === 'erro' ? 'selected' : '' }}>Erro</option>
+                                <option value="duplicado" {{ request('eva_status') === 'duplicado' ? 'selected' : '' }}>Duplicado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 px-1">
                             <button type="submit" class="btn btn-primary w-100">Buscar</button>
                         </div>
-
-                        <div class="col-md-6 px-1" style="float: left;">
-                            <form action="{{ route('rh.eventosacesso.coletar') }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja realmente disparar a coleta manual de eventos?');">
-                                @csrf
-                                <button type="submit" class="btn btn-warning w-100">
-                                    <i class="fa fa-sync"></i> Sincronizar Eventos
-                                </button>
-                            </form>
-                        </div>
                     </div>
+                </form>
+                <div class="col-md-2 px-1" style="float: left;">
+                    <form action="{{ route('rh.eventosacesso.coletar') }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja realmente disparar a coleta manual de eventos?');">
+                        @csrf
+                        <button type="submit" class="btn btn-warning w-100">
+                            <i class="fa fa-sync"></i> Sincronizar Eventos
+                        </button>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
