@@ -240,6 +240,8 @@ Route::group(['prefix' => 'rh', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'eventos-acesso'], function () {
         Route::get('/', '\Modulos\RH\Http\Controllers\EventoAcessoController@getIndex')->name('rh.eventosacesso.index');
         Route::get('/show/{id}', '\Modulos\RH\Http\Controllers\EventoAcessoController@getShow')->name('rh.eventosacesso.show');
+        Route::post('/coletar', [\Modulos\RH\Http\Controllers\EventoAcessoController::class, 'postColetarEventos'])->name('rh.eventosacesso.coletar');
+        Route::post('/sincronizar', [\Modulos\RH\Http\Controllers\EventoAcessoController::class, 'postSincronizarHoras'])->name('rh.eventosacesso.sincronizar');
     });
 
     // Ponto remoto — Fase 11

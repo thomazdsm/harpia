@@ -33,7 +33,7 @@
                             <option value="home_office" {{ request('eva_origem') === 'home_office' ? 'selected' : '' }}>Home Office</option>
                         </select>
                     </div>
-                    <div class="col-md-3 px-1">
+                    <div class="col-md-2 px-1">
                         <select name="eva_status" class="form-control">
                             <option value="">Todos os status</option>
                             <option value="bruto" {{ request('eva_status') === 'bruto' ? 'selected' : '' }}>Bruto</option>
@@ -45,8 +45,19 @@
                             <option value="duplicado" {{ request('eva_status') === 'duplicado' ? 'selected' : '' }}>Duplicado</option>
                         </select>
                     </div>
-                    <div class="col-md-2 px-1">
-                        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                    <div class="col-md-3 px-1">
+                        <div class="col-md-6 px-1" style="float: left;">
+                            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                        </div>
+
+                        <div class="col-md-6 px-1" style="float: left;">
+                            <form action="{{ route('rh.eventosacesso.coletar') }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja realmente disparar a coleta manual de eventos?');">
+                                @csrf
+                                <button type="submit" class="btn btn-warning w-100">
+                                    <i class="fa fa-sync"></i> Sincronizar Eventos
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </form>

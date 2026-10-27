@@ -24,35 +24,40 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
-                    <form method="GET" class="d-flex row" action="{{{ route('rh.horastrabalhadas.index') }}}">
-                        <div class="form-group col-md-2 px-1">
-                            <select name="htr_pel_id" id="htr_pel_id" class="form-control">
-                                <option value="">Selecione o período laboral</option>
-                                @foreach($periodosLaborais as $key => $value)
-                                    <option value="{{ $key }}" {{ Request::input('htr_pel_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="d-flex row" >
+                        <form method="GET" class="col-md-8 d-flex row" action="{{{ route('rh.horastrabalhadas.index') }}}">
+                            <div class="form-group col-md-3 px-1">
+                                {{--                            <label for="htr_pel_id" class="form-label">Período Laboral</label>--}}
+                                <select name="htr_pel_id" id="htr_pel_id" class="form-control">
+                                    <option value="">Selecione o período laboral</option>
+                                    @foreach($periodosLaborais as $key => $value)
+                                        <option value="{{ $key }}" {{ Request::input('htr_pel_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <div class="form-group col-md-3 px-1">
-                            <select name="cfn_set_id[]" id="cfn_set_id" class="form-control" multiple="true">
-                                @foreach($setores as $key => $value)
-                                    <option value="{{ $key }}" {{ Request::input('cfn_set_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            <div class="form-group col-md-3 px-1">
+                                {{--                            <label for="cfn_set_id" class="form-label">Setor</label>--}}
+                                <select name="cfn_set_id[]" id="cfn_set_id" class="form-control" multiple="true">
+                                    @foreach($setores as $key => $value)
+                                        <option value="{{ $key }}" {{ Request::input('cfn_set_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <div class="form-group col-md-3 px-1">
-                            <select name="col_pes_id[]" id="col_pes_id" class="form-control" multiple="true">
-                                @foreach($colaboradores as $key => $value)
-                                    <option value="{{ $key }}" {{ Request::input('col_pes_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            <div class="form-group col-md-3 px-1">
+                                {{--                            <label for="col_pes_id" class="form-label">Colaborador</label>--}}
+                                <select name="col_pes_id[]" id="col_pes_id" class="form-control" multiple="true">
+                                    @foreach($colaboradores as $key => $value)
+                                        <option value="{{ $key }}" {{ Request::input('col_pes_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <div class="col-md-2 px-1">
-                            <input type="submit" class="btn btn-primary w-100" value="Buscar">
-                        </div>
+                            <div class="col-md-3 px-1">
+                                <input type="submit" class="btn btn-primary w-100" value="Buscar">
+                            </div>
+                        </form>
 
                         <div class="col-md-2 px-1">
                             <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target=".modalImportacaoHoras">
@@ -60,7 +65,15 @@
                             </button>
                         </div>
 
-                    </form>
+                        <div class="col-md-2 px-1">
+                            <form action="{{ route('rh.eventosacesso.sincronizar') }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja realmente disparar a sincronização manual de horas?');">
+                                @csrf
+                                <button type="submit" class="btn btn-info w-100">
+                                    <i class="fa fa-sync"></i> Sincronizar Horas
+                                </button>
+                            </form>
+                        </div>
+                    </div>
 
                     <!-- Modal Importação Horas Trabalhadas -->
                     <div class="modal fade modalImportacaoHoras">
